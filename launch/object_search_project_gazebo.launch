@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+    <include file="$(find object_search_project)/launch/object_search_project_gazebo_env.launch">
+    </include>
+
+    <include file="$(find object_search_project)/launch/object_search_project_gazebo_rosbot.launch">
+    </include>
+
+</launch>

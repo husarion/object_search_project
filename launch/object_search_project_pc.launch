@@ -1,0 +1,18 @@
+<launch>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find object_search_project)/rviz/object_search_project.rviz"/>
+
+    <node pkg="image_transport" type="republish" name="rgb_decompress" args=" compressed in:=/rgb_republish raw out:=/rgb_raw">
+        <param name="compressed/mode" value="color"/>
+    </node>
+
+    <node pkg="image_transport" type="republish" name="depth_decompress" args=" compressedDepth in:=/depth_republish raw out:=/depth_raw ">
+        <param name="compressed/mode" value="unchanged"/>
+    </node>
+
+    <include file="$(find object_search_project)/launch/find_object_3d.launch"></include>
+
+    <include file="$(find object_search_project)/launch/frontier_exploration.launch"></include>
+
+    <node pkg="object_search_project" type="search_manager" name="search_manager" output="screen"/>
+
+</launch>
